@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import MovieCard from "./MovieCard"
 
 const Movies = () => {
 
@@ -30,7 +31,7 @@ const Movies = () => {
         <>
             <div className="container">
                 <h1>I film</h1>
-                <select aria-label="Filtra per Genere" value={genre} onChange={(event) => {
+                <select className="form-control" aria-label="Filtra per Genere" value={genre} onChange={(event) => {
                     setGenre(event.target.value)
                 }}>
                     <option value="">Tutti</option>
@@ -43,11 +44,14 @@ const Movies = () => {
                         }
                     })}
                 </select>
-                <ul>
+                <ul className="row">
                     {
                         filteredArr.map((curMovie) => {
                             return (
-                                <li key={curMovie.id}>{curMovie.title}</li>
+                                // <li key={curMovie.id}>{curMovie.title}</li>
+                                <div className="col-6">
+                                    <MovieCard movie={curMovie} />
+                                </div>
                             )
                         })
                     }
