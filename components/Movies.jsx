@@ -5,7 +5,8 @@ const Movies = () => {
 
     const [movies, setMovies] = useState([])
     const [genre, setGenre] = useState("")
-    const [filteredArr, setFiltered] = useState([...movies])
+    const [filteredArr, setFiltered] = useState([])
+    let genreArrDupes = []
 
     useEffect(() => {
         axios.get("http://localhost:3000/movies").then((resp) => {
@@ -13,6 +14,17 @@ const Movies = () => {
             setMovies(resp.data.data)
         })
     }, [])
+    
+    useEffect(() =>{
+        setFiltered([...movies])
+    },[movies])
+
+    useEffect(() =>{
+        setFiltered(
+            movies.filter((curMovie) => {
+            return (curMovie.genre.includes(genre))
+        }))
+    }, [genre])
 
     return (
         <>
@@ -20,16 +32,15 @@ const Movies = () => {
                 <h1>I film</h1>
                 <select aria-label="Filtra per Genere" value={genre} onChange={(event) => {
                     setGenre(event.target.value)
-                    setFiltered(
-                        movies.filter((curMovie) => {
-                        return (curMovie.genre.includes(genre))
-                    }))
                 }}>
                     <option value="">Tutti</option>
                     {movies.map((curMovie) => {
-                        return (
-                            <option value={curMovie.genre}>{curMovie.genre}</option>
-                        )
+                        if (!genreArrDupes.includes(curMovie.genre)){
+                            genreArrDupes.push(curMovie.genre)
+                            return (
+                                <option value={curMovie.genre}>{curMovie.genre}</option>
+                            )
+                        }
                     })}
                 </select>
                 <ul>
