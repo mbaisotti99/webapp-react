@@ -3,6 +3,7 @@ import Layout from "../pages/Layout"
 import HomePage from "../components/HomePage"
 import Movies from "../components/Movies"
 import "bootstrap/dist/css/bootstrap.min.css"
+import Details from "../components/Details"
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Route element={<Layout/>} >
         <Route path="/" element={<HomePage/>} />
         <Route path="/movies" element={<Movies/>}/>
+        <Route path="/movies/:id" element={<Details/>}/>
       </Route>
     </Routes>
   </BrowserRouter>)

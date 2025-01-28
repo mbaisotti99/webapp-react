@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const MovieCard = (movie) => {
     
     return (
@@ -6,6 +8,7 @@ const MovieCard = (movie) => {
                 <div className="card-body">
                     <h5 className="card-title">{movie.movie.title}</h5>
                     <p className="card-text">{movie.movie.abstract}</p>
+                    <Link to={`/movies/${movie.id}`} className="btn btn-primary">Dettagli</Link>
                 </div>
         </div>
     )
