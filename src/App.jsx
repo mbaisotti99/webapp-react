@@ -3,8 +3,10 @@ import Layout from "../pages/Layout"
 import HomePage from "../components/HomePage"
 import Movies from "../components/Movies"
 import "bootstrap/dist/css/bootstrap.min.css"
-import Details from "../components/Details"
+import {Details} from "../components/Details"
 import AddMoviePage from "../components/AddMoviePage"
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 
 function App() {

@@ -17,9 +17,9 @@ const NavBar = () => {
                 <a className="navbar-brand" href="#">BoolMovies</a>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        {navLinks.map((curLink) => {
+                        {navLinks.map((curLink, i) => {
                             return (
-                                <li className="nav-item">
+                                <li className="nav-item mx-5" key={i}>
                                     <NavLink className="nav-link" aria-current="page" to={curLink.path}>{curLink.name}</NavLink>
                                 </li>
                             )

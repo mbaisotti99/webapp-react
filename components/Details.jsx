@@ -8,7 +8,24 @@ const initialValues = {
     text: 0
 }
 
+const printStars = (n) =>{
+    let count = ""
+    for (let i = 0; i < n; i++){
+        count += "⭐"
+    }
+    return count
+  }
+
 const Details = () =>{
+    
+    const getMovie = () =>{
+        axios.get(`http://localhost:3000/movies/${id}`)
+        .then((resp) =>{
+            setMovie(resp.data.data)
+        }).finally(() =>{
+            console.log(movie);
+        })
+    }
     
     const {id} = useParams()
 
@@ -26,14 +43,6 @@ const Details = () =>{
         
     }
 
-    const getMovie = () =>{
-        axios.get(`http://localhost:3000/movies/${id}`)
-        .then((resp) =>{
-            setMovie(resp.data.data)
-        }).finally(() =>{
-            console.log(movie);
-        })
-    }
 
     const handleSubmit = () =>{
         axios.post(`http://localhost:3000/movies/${id}/review`, review)
@@ -47,6 +56,13 @@ const Details = () =>{
         getMovie()
     },[])
 
+    // const numbers = Array.from({ length: 5 }, (_, i) => i + 1);
+    const stars = Array.from({ length: 5 }, (_, i) => (
+        <p key={i+1}>{"⭐".repeat(i + 1)}</p>
+      ));
+
+      
+
     return(
         <div className="container text-center">
             <h1>{movie.title}</h1>
@@ -56,8 +72,8 @@ const Details = () =>{
                 {(movie.reviews) && movie.reviews.map((curReview) =>{
                     return(
                         <ul className="list-unstyled my-5">
-                            <li>Reviewer: {curReview.reviewer}</li>
-                            <li>Vote: {curReview.vote}</li>
+                            <li>Reviewer: {curReview.name}</li>
+                            <li>Vote: {printStars(curReview.vote)}</li>
                             <li>Description: {curReview.text}</li>
                         </ul>
                     )
@@ -65,18 +81,16 @@ const Details = () =>{
             <form onSubmit={(event) =>{
                 event.preventDefault();
                 handleSubmit()}}>
-                <h2>Username:</h2>
-                <input type="text" id="user" name="name" onChange={handleChange}/>
+                <h2 className="mb-3">Username:</h2>
+                <input className="form-control mb-5" type="text" id="user" name="name" onChange={handleChange}/>
                 <h2>Vote:</h2> 
-                <select id="vote" name="vote" onChange={handleChange}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
+                <select className="form-control text-center fs-2 mb-5" id="vote" name="vote" onChange={handleChange}>
+                    {stars.map((curNum) =>
+                    <option value={curNum.key}>{curNum}</option>
+                    )}
                 </select>
-                <h2>Text:</h2>
-                <input type="text" id="text" name="text" onChange={handleChange}/>
+                <h2 className="mb-3">Text:</h2>
+                <textarea className="form-control mb-5" type="text" id="text" name="text" onChange={handleChange}/>
                 <br />
                 <button type="submit" className="btn btn-primary">Aggiungi Recensione</button>
             </form>
@@ -84,4 +98,4 @@ const Details = () =>{
     )
 }
 
-export default Details 
+export {Details, printStars}
