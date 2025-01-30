@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import MovieCard from "./MovieCard"
+import { Link } from "react-router-dom"
 
 const Movies = () => {
 
@@ -31,6 +32,8 @@ const Movies = () => {
         <>
             <div className="container">
                 <h1>I film</h1>
+                <Link to={"add"} className="btn btn-primary">Aggiungi un film</Link>
+                <h2>Filtra per genere:</h2>
                 <select className="form-control" aria-label="Filtra per Genere" value={genre} onChange={(event) => {
                     setGenre(event.target.value)
                 }}>
