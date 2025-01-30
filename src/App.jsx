@@ -4,6 +4,7 @@ import HomePage from "../components/HomePage"
 import Movies from "../components/Movies"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Details from "../components/Details"
+import AddMoviePage from "../components/AddMoviePage"
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/movies" element={<Movies/>}/>
         <Route path="/movies/:id" element={<Details/>}/>
+        <Route path="/movies/add" element={<AddMoviePage/>} />
       </Route>
     </Routes>
   </BrowserRouter>)
