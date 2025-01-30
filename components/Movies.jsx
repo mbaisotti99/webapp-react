@@ -53,6 +53,7 @@ const Movies = () => {
                             return (
                                 // <li key={curMovie.id}>{curMovie.title}</li>
                                 <div className="col-6">
+                                    {/* <h1>{curMovie.id}</h1> */}
                                     <MovieCard movie={curMovie} />
                                 </div>
                             )
