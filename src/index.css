@@ -12,6 +12,7 @@ footer{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 50px;
 }
 
 .navbar{
@@ -23,3 +24,18 @@ footer h1{
   text-align: center;
 
 }
+
+html, body, #root {
+  height: 100% !important;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Il contenitore principale deve occupare tutto lo spazio disponibile */
+.container {
+  flex: 1 !important;
+}
+
+
+
